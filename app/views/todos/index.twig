@@ -1,0 +1,64 @@
+{% extends "_layouts/_master.twig" %}
+
+{% block content %}
+  {% if message | length %}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-info">
+        <p>{{ message }}</p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Total Todos: {{ todos.length }}</h3>
+        </div>
+        <div class="panel-body">
+          <div class="progress">
+            <div class="progress-bar progress-bar-success" style="width: {{ totalCompletion }}">
+              {{ totalCompletion }} Completion
+              <span class="sr-only">35% Complete (success)</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="list-group">
+        {% if todos | length %}
+          {% for todo in todos %}
+          {% if todo.completed == true %}
+          <li class="list-group-item list-group-item-success" data-todo="{{ todo.id }}">
+            <span class="badge">Completed</span>
+            {{ todo.description }}
+          </li>
+          {% else %}
+          <li class="list-group-item" data-todo="{{ todo.id }}">{{ todo.description }}</li>
+          {% endif %}
+          {% endfor %}
+        {% else %}
+          <li class="list-group-item">No Todos</li>
+        {% endif %}
+        </ul>
+      </div>
+
+    </div>
+
+
+
+    {# Todo Form #}
+    <div class="col-md-6">
+      <form role="form" action="/todos" method="POST">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Todo</label>
+          <input type="text" name="description" class="form-control" placeholder="What ya got to do?">
+        </div>
+
+        <button type="submit" class="btn btn-default">Create Todo</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
