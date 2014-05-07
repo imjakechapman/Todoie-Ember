@@ -12,7 +12,7 @@
   {% endif %}
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
 
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -21,7 +21,7 @@
         <div class="panel-body">
           <div class="progress">
             <div class="progress-bar progress-bar-success" style="width: {{ totalCompletion }}">
-              {{ totalCompletion }} Completion
+              {% if totalCompletion > 1 %} {{ totalCompletion }} Completion {% endif %}
               <span class="sr-only">35% Complete (success)</span>
             </div>
           </div>
@@ -32,16 +32,21 @@
           {% for todo in todos %}
           {% if todo.completed == true %}
           <li class="list-group-item list-group-item-success" data-todo="{{ todo.id }}">
-            <span class="badge">Completed</span>
+            <span class="badge completed">Completed</span>
             {{ todo.description }}
           </li>
           {% else %}
-          <li class="list-group-item" data-todo="{{ todo.id }}">{{ todo.description }}</li>
+          <li class="list-group-item" data-todo="{{ todo.id }}" data-todoDescription="{{ todo.description }}">
+            <span class="badge warning"><a href="/todos/{{ todo.id }}/delete">delete</a></span>
+            <span class="badge primary"><a href="/todos/{{ todo.id }}/edit">edit</a></span>
+            <span class="badge primary"><a href="/todos/{{ todo.id }}/complete">complete</a></span>
+            {{ todo.description }}</li>
           {% endif %}
           {% endfor %}
         {% else %}
           <li class="list-group-item">No Todos</li>
         {% endif %}
+          <a href="/todos/removeCompleted" class="list-group-item">Remove Completed Tasks</a>
         </ul>
       </div>
 
@@ -50,7 +55,7 @@
 
 
     {# Todo Form #}
-    <div class="col-md-6">
+    <div class="col-md-4">
       <form role="form" action="/todos" method="POST">
         <div class="form-group">
           <label for="exampleInputEmail1">Todo</label>

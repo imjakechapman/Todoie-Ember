@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 
-var todoSchema = new Schema({
+var TodoSchema = new Schema({
 
   description: {
     type: String,
@@ -23,10 +23,18 @@ var todoSchema = new Schema({
 
 
 // Updates todo.updated_at and saves todo.created_at if initial save
-todoSchema.pre('save', function(next){
+TodoSchema.pre('save', function(next){
   this.updated_at = new Date
   next()
 })
 
+TodoSchema.statics = {
 
-module.exports = mongoose.model('Todo', todoSchema)
+  load: function (id, cb) {
+    this.findOne({ _id : id })
+      .exec(cb);
+  }
+
+}
+
+module.exports = mongoose.model('Todo', TodoSchema)
