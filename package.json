@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "Todoie Express4 Angular",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -11,5 +11,11 @@
     "mongoose": "^3.8.8",
     "twig": "^0.7.1",
     "connect-flash": "~0.1.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }

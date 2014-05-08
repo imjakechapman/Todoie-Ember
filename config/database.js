@@ -1,6 +1,6 @@
 // config/database.js
 module.exports = {
 
-  'url': 'mongodb://localhost/todos-express4'
+  'url': 'mongodb://localhost/todos-express4-angular'
 
 }

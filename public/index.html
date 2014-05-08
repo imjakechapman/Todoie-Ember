@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" ng-app="todoie">
+<head>
+  <title>Express 4 - Todoie</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+
+
+  <style>
+    .badge a { color: white; text-decoration: none; }
+    .badge.primary { background-color: lightblue; }
+    .badge.warning { background-color: #f63f3b; }
+    .badge.completed { opacity: .5; }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">Todoie - <small>a stupid todo app with Express 4 &amp; Angular.js</small></a>
+      </div>
+      <p class="navbar-text navbar-right disabled"><a href="#" class="navbar-link" onclick="alert('Users &amp; Authentication coming in next post in series. We\'ll be using Passport.js');">Sign In</a></p>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div ng-view></div>
+  </main>
+
+  <script src="/assets/bower_components/angular/angular.min.js"></script>
+  <script src="/assets/bower_components/angular-route/angular-route.js"></script>
+  <script src="/assets/js/core.js"></script>
+  <script src="/assets/js/controllers.js"></script>
+</body>
+</html>

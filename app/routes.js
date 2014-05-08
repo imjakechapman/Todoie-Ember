@@ -3,54 +3,50 @@
  */
 
  // Controllers
- var todoController = require('./controllers/todoController')
+ // var todoController = require('./controllers/todoController')
+ var todoApiController = require('./controllers/todoApiController')
 
 
 module.exports = function(app, express) {
 
-  // Create Router Instance
+
+  // Create an API Router Instance
   var router = express.Router()
 
-
-  // Set Flash Messages
-  router.use(function(req, res, next) {
-    req.message = req.flash('info')
-    next()
-  })
-
-  // Set route param (basically prefetching and doing anything with resource before route hits)
-  router.param('id', todoController.load)
-  app.param('id', todoController.load)
+  // Inject Resource for ID Param
+  router.param('id', todoApiController.load)
+  app.param('id', todoApiController.load)
 
 
-  // Index
-  router.get('/', todoController.list)
+  // Remove Completed Todos
+  router.get('/todos/removeCompleted', todoApiController.removeCompleted)
 
 
-  // Chaining Routes using app.route
-  app.route('/todos')
-    .get(todoController.list)
-    .post(todoController.create)
+  // All Todos
+  router.get('/todos', todoApiController.list)
+  router.post('/todos', todoApiController.create)
 
 
-  // Show and Do Edit
-  app.route('/todos/:id/edit')
-    .get(todoController.edit)
-    .post(todoController.update)
+  // Completed Todo
+  router.put('/todos/:id/complete', todoApiController.completeTodo)
 
-
-  // Complete Todo
-  router.get('/todos/:id/complete', todoController.completeTodo)
+  // Get Todo
+  router.get('/todos/:id/edit', todoApiController.edit)
+  router.put('/todos/:id/edit', todoApiController.update)
 
 
   // Delete Todo
-  router.get('/todos/:id/delete', todoController.destroy)
-
-  // Remove Completed
-  router.get('/todos/removeCompleted', todoController.removeCompleted)
+  router.delete('/todos/:id', todoApiController.destroy)
 
 
-  // apply routes to app
-  app.use('/', router);
+  // Apply router to use the /API Prefex
+  app.use('/api', router)
+
+
+
+  // application
+  app.get('*', function(req, res) {
+    res.sendfile('./public/index.html');
+  });
 
 }
