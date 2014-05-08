@@ -16,7 +16,7 @@
       <ul class="list-group">
         <li ng-repeat="todo in todos" class="list-group-item">
           <span ng-hide="todo.completed" class="badge warning"><a href="javascript:void(0)" ng-click="deleteTodo(todo._id)">delete</a></span>
-          <span ng-hide="todo.completed" class="badge primary"><a href="#/todos/{{ todo._id }}/edit">edit</a></span>
+          <span ng-hide="todo.completed" class="badge primary"><a href="/todos/{{ todo._id }}/edit">edit</a></span>
           <span ng-hide="todo.completed" class="badge primary"><a href="javascript:void(0)" ng-click="completeTodo(todo._id)">complete</a></span>
           <span ng-show="todo.completed" class="badge">completed</span>
           {{ todo.description }}</li>
