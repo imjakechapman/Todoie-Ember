@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-8">
+
+    {{#if validationError}}
+    <div class="alert alert-warning">
+      <p>{{ validationError }}</p>
+    </div>
+    {{/if}}
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Total Todos: {{ length }}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" {{ bind-attr style=completedStyle }}>
+            <span class="sr-only">35% Complete (success)</span>
+          </div>
+        </div>
+      </div>
+
+      <ul class="list-group">
+        {{#each todo in controller}}
+        {{#if todo.notCompleted}}
+        <li class="list-group-item">
+          <span class="badge warning"><a href="#" {{ action "delete" todo}}>delete</a></span>
+          <span class="badge primary">{{#link-to 'todos.edit' todo}}edit{{/link-to}}</span>
+          <span class="badge primary"><a href="#" {{ action "complete" todo}}>complete</a></span>
+          {{todo.description}}
+        </li>
+        {{else}}
+        <li class="list-group-item">
+          <span class="badge">completed</span>
+          {{todo.description}}
+        </li>
+        {{/if}}
+
+        {{/each}}
+
+        {{#unless controller.length}}
+        <li class="list-group-item">No Todos</li>
+        {{/unless}}
+
+
+        {{#if completedTasks.length }}
+        <a href="#" class="list-group-item" {{ action "removeCompleted" }}>Remove Completed Tasks</a>
+        {{/if}}
+      </ul>
+    </div>
+
+  </div>
+
+
+  <!-- Todo Form -->
+  <div class="col-md-4">
+    <form role="form" {{action "create" on="submit"}} >
+      <div class="form-group">
+        <label for="description">Todo</label>
+        {{input value=newDescription class="form-control"}}
+      </div>
+
+      <button type="submit" class="btn btn-default">Create Todo</button>
+    </form>
+  </div>
+</div>

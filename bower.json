@@ -1,13 +1,13 @@
 {
-  "name": "Todoie Angular",
-  "description": "A Stupid Todo App with Node.js, Express 4 & Angular.js written for very basics of Express.js",
+  "name": "Todoie Ember",
+  "description": "A Stupid Todo App with Node.js, Express 4 & Ember.js written for very basics of Express.js",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "1.2.16",
-    "angular-mocks": "~1.2.x",
     "bootstrap": "~3.1.1",
-    "angular-route": "~1.2.x"
+    "ember": "~1.5.1",
+    "ember-data": "1.0.0-beta.6",
+    "validatorjs": "~1.0.0"
   }
 }

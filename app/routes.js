@@ -26,13 +26,9 @@ module.exports = function(app, express) {
   router.get('/todos', todoApiController.list)
   router.post('/todos', todoApiController.create)
 
-
-  // Completed Todo
-  router.put('/todos/:id/complete', todoApiController.completeTodo)
-
   // Get Todo
   router.get('/todos/:id/edit', todoApiController.edit)
-  router.put('/todos/:id/edit', todoApiController.update)
+  router.put('/todos/:id', todoApiController.update)
 
 
   // Delete Todo

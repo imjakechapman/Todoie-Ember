@@ -31,7 +31,9 @@ exports.list = function(req, res) {
       res.send(err)
 
     // Return all todos in JSON format
-    res.json(todos)
+    res.json({
+      todos: todos
+    })
 
   })
 
@@ -43,19 +45,17 @@ exports.list = function(req, res) {
 */
 exports.create = function(req, res) {
 
+  console.log(req.body.todo);
+
   Todo.create({
-    description   :   req.body.description,
+    description   :   req.body.todo.description,
     completed     :   false
   }, function(err, todo) {
     if (err)
       res.send(err)
 
-    // Return all todos
-    Todo.find(null, null, {sort: { completed: 1 }}, function(err, todos) {
-      if (err)
-        res.send(err)
-
-      res.json(todos)
+    res.json({
+      todo: todo
     })
   })
 
@@ -66,7 +66,9 @@ exports.create = function(req, res) {
 * Show Edit
 */
 exports.edit = function(req, res) {
-  res.json(req.todo)
+  res.json({
+    todo: req.todo
+  })
 }
 
 
@@ -75,39 +77,16 @@ exports.edit = function(req, res) {
 */
 exports.update = function(req, res) {
 
-  Todo.findOneAndUpdate({ _id: req.params.id }, { description: req.body.description }, null, function(err, todo) {
+  Todo.findOneAndUpdate({ _id: req.params.id }, { description: req.body.todo.description, completed: req.body.todo.completed }, null, function(err, todo) {
     if(err)
       res.send(err)
 
-    Todo.find(null, null, {sort: { completed: 1 }}, function(err, todos) {
-      if(err)
-        res.send(err)
-
-      res.json(todos)
+    res.json({
+      todo: todo
     })
   })
 
 }
-
-
-/**
-* Complete Todo
-*/
-exports.completeTodo = function(req, res) {
-
-  Todo.findOneAndUpdate({ _id: req.params.id }, { completed: true }, null, function(err, todo) {
-    if(err)
-      res.send(err)
-
-    Todo.find(null, null, {sort: { completed: 1 }}, function(err, todos) {
-      if(err)
-        res.send(err)
-
-      res.json(todos)
-    })
-  })
-}
-
 
 
 /**
@@ -121,11 +100,10 @@ exports.destroy = function(req, res) {
     if(err)
       res.send(err)
 
-    Todo.find(function(err, todos) {
-      if(err)
-        res.send(err)
-
-      res.json(todos)
+    res.json({
+      meta: {
+        status: "ok"
+      }
     })
   })
 
@@ -141,11 +119,10 @@ exports.removeCompleted = function(req, res) {
     if(err)
       res.send(err)
 
-    Todo.find(null, null, {sort: { completed: 1 }}, function(err, todos) {
-      if(err)
-        res.send(err)
-
-      res.json(todos)
+    res.json({
+      meta: {
+        status: "ok"
+      }
     })
   })
 }
