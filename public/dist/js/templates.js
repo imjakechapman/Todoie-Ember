@@ -29,15 +29,16 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
 
 
   data.buffer.push("<div class=\"row\">\n  <div class=\"col-md-12\">\n    <form role=\"form\" ");
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "submit", {hash:{
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "submit", "", {hash:{
     'on': ("submit")
-  },hashTypes:{'on': "STRING"},hashContexts:{'on': depth0},contexts:[depth0],types:["STRING"],data:data})));
+  },hashTypes:{'on': "STRING"},hashContexts:{'on': depth0},contexts:[depth0,depth0],types:["STRING","ID"],data:data})));
   data.buffer.push(">\n      <div class=\"form-group\">\n        ");
   data.buffer.push(escapeExpression((helper = helpers.input || (depth0 && depth0.input),options={hash:{
     'value': ("description"),
-    'class': ("form-control")
-  },hashTypes:{'value': "ID",'class': "STRING"},hashContexts:{'value': depth0,'class': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("\n      </div>\n\n      <button type=\"submit\" class=\"btn btn-default\">Edit Todo</button>\n    </form>\n  </div>\n</div>");
+    'class': ("form-control"),
+    'required': ("required")
+  },hashTypes:{'value': "ID",'class': "STRING",'required': "STRING"},hashContexts:{'value': depth0,'class': depth0,'required': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n      </div>\n\n      <button type=\"submit\" class=\"btn btn-default\">Edit Todo</button>\n    </form>\n  </div>\n</div>\n");
   return buffer;
   
 });

@@ -67,7 +67,6 @@ App.TodosIndexController = Ember.ArrayController.extend(App.ValidationMixin, {
         this.set('newDescription', null);
       }
     },
-
     delete: function(todo) {
       todo.deleteRecord();
       todo.save();
@@ -86,11 +85,15 @@ App.TodosIndexController = Ember.ArrayController.extend(App.ValidationMixin, {
   }
 });
 
-App.TodosEditController = Ember.ObjectController.extend({
+App.TodosEditController = Ember.ObjectController.extend(App.ValidationMixin, {
   actions: {
-    submit: function(){
-      console.log(this.get('model'));
-      this.transitionToRoute('todos.index');
+    submit: function(todo){
+      todo.set('description', this.get('description'));
+      if(todo.save()) {
+        this.transitionToRoute('todos.index');
+      } else {
+        this.set('validationError', 'Could not save todo.');
+      }
     }
   }
 });
