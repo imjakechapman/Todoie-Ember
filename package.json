@@ -2,26 +2,30 @@
   "version": "0.0.1-2",
   "private": true,
   "dependencies": {
-    "express": "~4.0.0",
+    "express": "~4.15.5",
     "morgan": "~1.0.0",
     "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",
     "method-override": "~1.0.0",
     "mongoose": "^3.8.8",
-    "twig": "^0.7.1",
+    "twig": "^0.8.9",
     "connect-flash": "~0.1.1",
     "express-session": "^1.0.4",
     "gulp-ember-handlebars": "^0.6.0",
     "gulp-concat": "^2.2.0",
-    "gulp": "^3.6.2",
-    "gulp-util": "^2.2.14"
+    "gulp": "^4.0.0",
+    "gulp-util": "^2.2.14",
+    "snyk": "^1.104.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "engines": {
     "node": "0.10.x"
   },
   "name": "Todoie-Ember",
-  "subdomain": "todoie-ember"
+  "subdomain": "todoie-ember",
+  "snyk": true
 }
