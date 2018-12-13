@@ -2,19 +2,19 @@
   "version": "0.0.1-2",
   "private": true,
   "dependencies": {
-    "express": "~4.0.0",
-    "morgan": "~1.0.0",
-    "cookie-parser": "~1.0.1",
     "body-parser": "~1.0.0",
-    "method-override": "~1.0.0",
-    "mongoose": "^3.8.8",
-    "twig": "^0.7.1",
     "connect-flash": "~0.1.1",
+    "cookie-parser": "~1.0.1",
+    "express": "~4.0.0",
     "express-session": "^1.0.4",
-    "gulp-ember-handlebars": "^0.6.0",
-    "gulp-concat": "^2.2.0",
     "gulp": "^3.6.2",
-    "gulp-util": "^2.2.14"
+    "gulp-concat": "^2.2.0",
+    "gulp-ember-handlebars": "^0.6.0",
+    "gulp-util": "^2.2.14",
+    "method-override": "~1.0.0",
+    "mongoose": "^4.13.17",
+    "morgan": "~1.0.0",
+    "twig": "^0.7.1"
   },
   "scripts": {
     "start": "node server.js"
